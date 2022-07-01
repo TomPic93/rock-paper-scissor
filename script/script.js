@@ -1,23 +1,49 @@
 // literal values of the computer/player choices (1-3)
-const choices = ["Paper", "Scissor", "Rock"]
+const choices = ["paper", "scissors", "rock"]
 
-// function that make the computer chose a random number (1-3) and return it
+
+// Start the game asking the user for an input from the ones available. Call for the other functions.
+function startTheGame() {
+    let playerInput = prompt("Enter your choice: rock(3), scissors(2) or paper(1): ");
+    playerInput = playerInput.toLowerCase();
+    if (playerInput != "rock" && playerInput != "scissors" && playerInput != "paper") {
+        console.log("Please enter a valid text.")
+    } else {
+        playRound(computerPlay(), playerPlay(playerInput))
+    }
+}
+
+
+// ----------------------------------------------------------------
+// the computer chose a random number (1-3) and return it
 // return -> int value 1-3
 function computerPlay() {
     let computerChoice = Math.floor(Math.random() * 3) + 1;
     return computerChoice;
 }
 
-// function to let the player chose, assigning a int value to the choice and returning it
+// assigning a number value to the user choice and returning it
 // return -> int value 1-3
-function playerPlay() {
-    // playerChoice = parseInt(prompt("Enter your choice (3: rock, 2: scissor or 1: paper): "));
-    playerChoice = 2
-    return playerChoice;
+function playerPlay(inputString) {
+    let playerChoice;
+    switch (inputString) {
+        case "rock":
+            playerChoice = 3;
+            break;
+        case "scissors":
+            playerChoice = 2;
+            break;
+        case "paper":
+            playerChoice = 1;    
+    }
+    return playerChoice
 }
+// ----------------------------------------------------------------
+
+
 
 // compare the computer and player choice and call the winFunction  ----  to add: call for another function/s to take the score, etc
-function letsPlay(computerSelection, playerSelection) {
+function playRound(computerSelection, playerSelection) {
     console.log(`Computer: ${choices[computerSelection - 1]} (${computerSelection}) | Player: ${choices[playerSelection - 1]} (${playerSelection})`)
     
     if (playerSelection == 1 && computerSelection == 3) {
@@ -53,6 +79,6 @@ function draw() {
 }
 // ----------------------------------------------------------------
 
-for (let i = 0; i < 20; i++) {
-    letsPlay(computerPlay(), playerPlay())
-}
+
+
+startTheGame()
