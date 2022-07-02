@@ -4,12 +4,14 @@ const choices = ["paper", "scissors", "rock"]
 
 // Start the game asking the user for an input from the ones available. Call for the other functions.
 function startTheGame() {
-    let playerInput = prompt("Enter your choice: rock(3), scissors(2) or paper(1): ");
-    playerInput = playerInput.toLowerCase();
-    if (playerInput != "rock" && playerInput != "scissors" && playerInput != "paper") {
-        console.log("Please enter a valid text.")
-    } else {
-        playRound(computerPlay(), playerPlay(playerInput))
+    for (let i = 0; i < 5; i++) {
+        let playerInput = prompt("Enter your choice: rock(3), scissors(2) or paper(1): ");
+        playerInput = playerInput.toLowerCase();
+        if (playerInput != "rock" && playerInput != "scissors" && playerInput != "paper") {
+            console.log("Please enter a valid text.")
+        } else {
+            playRound(computerPlay(), playerPlay(playerInput))
+        }
     }
 }
 
@@ -22,7 +24,7 @@ function computerPlay() {
     return computerChoice;
 }
 
-// assigning a number value to the user choice and returning it
+// base on the user input assign a number value to the user choice and returning it
 // return -> int value 1-3
 function playerPlay(inputString) {
     return choices.indexOf(inputString) + 1
