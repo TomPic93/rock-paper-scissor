@@ -25,18 +25,7 @@ function computerPlay() {
 // assigning a number value to the user choice and returning it
 // return -> int value 1-3
 function playerPlay(inputString) {
-    let playerChoice;
-    switch (inputString) {
-        case "rock":
-            playerChoice = 3;
-            break;
-        case "scissors":
-            playerChoice = 2;
-            break;
-        case "paper":
-            playerChoice = 1;    
-    }
-    return playerChoice
+    return choices.indexOf(inputString) + 1
 }
 // ----------------------------------------------------------------
 
