@@ -1,17 +1,36 @@
-// literal values of the computer/player choices (1-3)
+// literal values of the computer/player choices (1-3) and global variables
 const choices = ["paper", "scissors", "rock"]
+let playerScore = 0;
+let computerScore = 0;
+let totalRounds = 5;
 
 
 // Start the game asking the user for an input from the ones available. Call for the other functions.
+
 function startTheGame() {
-    for (let i = 0; i < 5; i++) {
+    let rounds = 0;
+    while (rounds < totalRounds) {
         let playerInput = prompt("Enter your choice: rock(3), scissors(2) or paper(1): ");
         playerInput = playerInput.toLowerCase();
         if (playerInput != "rock" && playerInput != "scissors" && playerInput != "paper") {
             console.log("Please enter a valid text.")
         } else {
             playRound(computerPlay(), playerPlay(playerInput))
+            rounds += 1;
         }
+        console.log(`COMPUTER: ${computerScore} PLAYER: ${playerScore}`)
+    }
+    // States the final result and declare the winner
+    console.log(`Game Over, final result: User ${playerScore} | Computer ${computerScore}`)
+    switch (true) {
+        case computerScore > playerScore:
+            console.log("Computer wins!")
+            break;
+        case computerScore < playerScore:
+            console.log("Player wins!")
+            break;
+        default:
+            console.log("It's a draw!")
     }
 }
 
@@ -59,14 +78,18 @@ function playRound(computerSelection, playerSelection) {
 // functions called in case of victory (computer or player) or draw
 function computerWin() {
     console.log("Computer wins")
+    computerScore += 1
 }
 
 function playerWin() {
     console.log("Player wins")
+    playerScore += 1
 }
 
 function draw() {
     console.log("It's a draw")
+    playerScore += 1
+    computerScore +=1
 }
 // ----------------------------------------------------------------
 
