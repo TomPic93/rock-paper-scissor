@@ -1,98 +1,153 @@
-// literal values of the computer/player choices (1-3) and global variables
+// _________________________________________________________
+
+// global variables 
 const choices = ["paper", "scissors", "rock"]
-let playerScore = 0;
-let computerScore = 0;
+let playerTotalScore = 0;
+let computerTotalScore = 0;
 let totalRounds = 5;
 
+// variables from DOM
+const output = document.querySelector("#output");
+const computer = document.querySelector("#computer");
+const player = document.querySelector("#player");
+const roundScore = document.querySelector("#round-score");
+const roundWinner = document.querySelector("#round-winner");
+const buttons = document.querySelectorAll(".btn");
+const totalScore = document.querySelector("#total-score");
+const playAgain = document.querySelector("#play-again");
+const winner = document.querySelector("#winner");
+const playAgainBtn = document.createElement("button");
+playAgainBtn.textContent = "Play Again";
 
-// Start the game asking the user for an input from the ones available. Call for the other functions.
+// _________________________________________________________
 
-function startTheGame() {
-    let rounds = 0;
-    while (rounds < totalRounds) {
-        let playerInput = prompt("Enter your choice: rock(3), scissors(2) or paper(1): ");
-        playerInput = playerInput.toLowerCase();
-        if (playerInput != "rock" && playerInput != "scissors" && playerInput != "paper") {
-            console.log("Please enter a valid text.")
-        } else {
-            playRound(computerPlay(), playerPlay(playerInput))
-            rounds += 1;
-        }
-        console.log(`COMPUTER: ${computerScore} PLAYER: ${playerScore}`)
-    }
-    // States the final result and declare the winner
-    console.log(`Game Over, final result: User ${playerScore} | Computer ${computerScore}`)
-    switch (true) {
-        case computerScore > playerScore:
-            console.log("Computer wins!")
-            break;
-        case computerScore < playerScore:
-            console.log("Player wins!")
-            break;
-        default:
-            console.log("It's a draw!")
-    }
-}
+// event listeners (click) 
+// activates the game
+buttons.forEach((button) => {
+    button.addEventListener("click", playGame)
+});
 
+// gets the player's round value
+buttons.forEach((button) => {
+    button.addEventListener("click", playerPlay)
+});
 
-// ----------------------------------------------------------------
-// the computer chose a random number (1-3) and return it
-// return -> int value 1-3
-function computerPlay() {
-    let computerChoice = Math.floor(Math.random() * 3) + 1;
-    return computerChoice;
-}
+// restarts the game
+playAgainBtn.addEventListener("click", restart)
 
-// base on the user input assign a number value to the user choice and returning it
-// return -> int value 1-3
-function playerPlay(inputString) {
-    return choices.indexOf(inputString) + 1
-}
-// ----------------------------------------------------------------
+// _________________________________________________________
 
+// main game functions
 
-
-// compare the computer and player choice and call the winFunction  ----  to add: call for another function/s to take the score, etc
-function playRound(computerSelection, playerSelection) {
-    console.log(`Computer: ${choices[computerSelection - 1]} (${computerSelection}) | Player: ${choices[playerSelection - 1]} (${playerSelection})`)
-    
-    if (playerSelection == 1 && computerSelection == 3) {
-        playerWin()
-    }
-    else if(playerSelection == 3 && computerSelection == 1) {
-        computerWin()
-    }
-    else if (playerSelection > computerSelection) {
-        playerWin()
-    }
-    else if (playerSelection == computerSelection) {
-        draw()
+function playGame(e) {
+    if (totalRounds) {
+        // displays the output text
+        display();
+        // Calling the single match functions
+        compareScore(computerPlay(), playerPlay(e))
+        // returning the total score 
+        totalScore.textContent = "Player " + playerTotalScore + " | " + computerTotalScore + " Computer";
+        totalRounds -= 1;
     } else {
-        computerWin()
+        // hide the output text
+        notDisplay();
+        // displays the game winner
+        winner.textContent = "End of the game, final result: Player " + playerTotalScore + " Computer " + computerTotalScore;
+        winner.style.display = "block";
+        // displays the restart button
+        output.appendChild(playAgainBtn);
+    };
+    
+};
+
+
+// restarts the game
+function restart() {
+    computerTotalScore = 0;
+    playerTotalScore = 0;
+    totalRounds = 5;
+    // hides the restart button
+    output.removeChild(playAgainBtn);
+    // hides the previous game winner
+    winner.style.display = "none";
+};
+
+// _________________________________________________________
+
+// displays the output nodes in the DOM
+function display() {
+    computer.style.display = "block";
+    player.style.display = "block";
+    roundWinner.style.display = "block";
+    totalScore.style.display = "block";
+};
+
+// hides the output nodes in the DOM
+function notDisplay() {
+    computer.style.display = "none";
+    player.style.display = "none";
+    roundWinner.style.display = "none";
+    totalScore.style.display = "none";  
+};
+
+// _________________________________________________________
+
+// returns player input (1-3) based on button's data-value attribute
+function playerPlay(e) {
+    let playerOutput = e.target.getAttribute("data-value");
+    // text output of the player choice (rock, scissors or paper)
+    player.textContent = `Player: ${choices[playerOutput - 1]}`;
+    return playerOutput;
+};
+
+// returns computer input with random number generator (1-3)
+function computerPlay() {
+    let computerOutput = Math.floor(Math.random() * 3) + 1;
+    // text output of the computer choice (rock, scissors or paper)
+    computer.textContent = `Computer: ${choices[computerOutput - 1]}`;
+    return computerOutput;
+};
+
+// _________________________________________________________
+
+// confronts the computer - player input and calls the winner function
+function compareScore(computerScore, playerScore) {
+    if (playerScore == 1 && computerScore == 3) {
+        playerWin();
     }
-}
+    else if (playerScore == 3 && computerScore == 1) {
+        computerWin();
+    }
+    else if (playerScore > computerScore) {
+        playerWin();
+    }
+    else if (playerScore == computerScore) {
+        draw();
+    } else {
+        computerWin();
+    };
+};
 
+// _________________________________________________________
 
-
-// ----------------------------------------------------------------
-// functions called in case of victory (computer or player) or draw
+// victory/draw functions called after the confront
 function computerWin() {
-    console.log("Computer wins")
-    computerScore += 1
+    // text output ofd the match result
+    roundWinner.textContent = "Computer wins!";
+    computerTotalScore += 1
 }
 
 function playerWin() {
-    console.log("Player wins")
-    playerScore += 1
+    // text output ofd the match result
+    roundWinner.textContent = "Player wins!";
+    playerTotalScore += 1
 }
 
 function draw() {
-    console.log("It's a draw")
-    playerScore += 1
-    computerScore +=1
+    // text output ofd the match result
+    roundWinner.textContent = "It's a draw!";
+    playerTotalScore += 1
+    computerTotalScore += 1
 }
-// ----------------------------------------------------------------
 
-
-
-startTheGame()
+// _________________________________________________________
