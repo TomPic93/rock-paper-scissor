@@ -1,0 +1,49 @@
+* {
+    border: 1px solid black;
+    text-align: center;
+}
+
+#mainGame {
+    width: 500px;
+    margin: auto;
+}
+
+#tabs {
+    display: flex;
+    justify-content: space-around;
+    max-width: 500px;
+}
+
+#playerTab, #computerTab {
+    display: flex;
+    flex-direction: column;
+}
+
+#symbols {
+    display: flex;
+    justify-content: space-around;
+}
+
+#roundChoices,
+#roundWinner,
+#playAgain {
+    height: 60px;
+}
+
+.symbol {
+    height: 100px;
+    width: 100px;
+    font-size: 70px;
+}
+
+.tab {
+    width: 200px;
+}
+
+.name, .score {
+    height: 60px;
+}
+
+.choice {
+    height: 200px;
+}
