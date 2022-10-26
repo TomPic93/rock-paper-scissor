@@ -24,9 +24,9 @@
     justify-content: space-around;
 }
 
-#roundChoices,
-#roundWinner,
-#playAgain {
+#roundChoicesDisplay,
+#roundWinnerDisplay,
+#playAgainDisplay {
     height: 60px;
 }
 
@@ -46,4 +46,5 @@
 
 .choice {
     height: 200px;
+    font-size: 100px;
 }
