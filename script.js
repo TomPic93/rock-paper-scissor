@@ -1,6 +1,5 @@
 // TODO LIST
 // ask name
-// ask max score
 // focus on selection and round winner display
 // select with querySelector("data-value") es  const button = document.querySelector(`.key[data-key="${e.keyCode}"]`)
 
@@ -32,8 +31,8 @@ function startGame() {
     symbols.forEach((symbol) => symbol.addEventListener("click", round))
     computerScoreDisplay.textContent = computerScore
     playerScoreDisplay.textContent = playerScore
-    computerChoiceDisplay.textContent = ""
-    playerChoiceDisplay.textContent = ""
+    computerChoiceDisplay.textContent = "❔"
+    playerChoiceDisplay.textContent = "❔"
     playAgainDisplay.style.display = "none"
     roundChoicesDisplay.textContent = ""
     roundWinnerDisplay.textContent = ""
@@ -60,7 +59,7 @@ function userSelection(e) {
 function computerSelection() {
     let computerChoice = symbols[Math.floor(Math.random() * (2 - 0 + 1) + 0)];
     computerChoiceDisplay.textContent = computerChoice.textContent
-    roundChoicesDisplay.textContent += `, computer choose ${computerChoice.getAttribute("Id")}`
+    roundChoicesDisplay.textContent += `, computer choose ${computerChoice.getAttribute("Id")}:`
     // returns a numeric value between 1 and 3 depending on the generated random number
     return computerChoice.getAttribute("data-value")
 }

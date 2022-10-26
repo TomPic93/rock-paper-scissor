@@ -9,13 +9,14 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <div id="mainGame">
-        <div id="title">
+    <div id="title">
             <h1>Rock Paper Scissor</h1>
         </div>
+
+    <div id="mainGame">  
         <div id="tabs">
             <div class="tab" id="playerTab">
-                <div class="name" id="playerName"></div>
+                <div class="name" id="playerName">Player</div>
                 <div class="score"  id="playerScoreDisplay"></div>
                 <div class="choice" id="playerChoiceDisplay"></div>
             </div>
@@ -26,9 +27,15 @@
             </div>
         </div>
         <div id="symbols">
-            <div id="rock" class="symbol noSelect" data-value="3">👊</div>
-            <div id="scissors" class="symbol noSelect" data-value="2">✌️</div>
-            <div id="paper" class="symbol noSelect" data-value="1">✋</div>
+            <div class="symbolContainer">
+                <div class="symbol" id="rock" data-value="3">👊</div>
+            </div>
+            <div class="symbolContainer">
+                <div  class="symbol" id="paper" data-value="1">✋</div>
+            </div>
+            <div class="symbolContainer">
+                <div  class="symbol" id="scissors" data-value="2">✌️</div>
+            </div>
         </div>
         <div id="roundChoicesDisplay"></div>
         <div id="roundWinnerDisplay"></div>

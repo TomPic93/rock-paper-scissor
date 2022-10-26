@@ -1,15 +1,27 @@
 * {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
-}
-
-.noSelect {
+    color: aliceblue;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+html {
+    padding: 0px;
+}
+
+body {
+    background-color: rgb(37, 43, 66);
+}
+
+#title {
+    background-color: rgb(32, 37, 56);
+    margin: 0px;
+    padding: 20px;
 }
 
 #mainGame {
@@ -21,6 +33,7 @@
     display: flex;
     justify-content: space-around;
     max-width: 500px;
+    margin-top: 60px;
 }
 
 #playerTab, #computerTab {
@@ -31,18 +44,47 @@
 #symbols {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 50px;
 }
 
 #roundChoicesDisplay,
 #roundWinnerDisplay,
 #playAgainDisplay {
-    height: 60px;
+    height: 50px;
+}
+
+#roundChoicesDisplay {
+    font-size: 20px;
+}
+
+#roundWinnerDisplay {
+    font-size: 30px;
+}
+
+.score {
+    font-size: 40px;
+}
+
+.name {
+    font-size: 30px;
+}
+
+.symbolContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(32, 37, 56);
+    border-radius: 15%;
+    margin-top: 30px;
 }
 
 .symbol {
     height: 100px;
     width: 100px;
     font-size: 70px;
+    padding-top: 10px;
 }
 
 .tab {
@@ -54,6 +96,9 @@
 }
 
 .choice {
-    height: 200px;
+    height: 160px;
     font-size: 100px;
+    padding-top: 30px;
+    background-color: rgb(32, 37, 56);
+    border-radius: 15%;
 }
