@@ -1,6 +1,8 @@
 // TODO LIST
-// reset btn
-// max score problem
+// ask name
+// ask max score
+// focus on selection and round winner display
+// select with querySelector("data-value") es  const button = document.querySelector(`.key[data-key="${e.keyCode}"]`)
 
 // GLOBAL SELECTORS 
 
@@ -16,30 +18,37 @@ const playAgainDisplay = document.querySelector("#playAgainDisplay");
 const playAgainBtn = document.querySelector("#playAgainBtn");
 
 let maxScore = 5;
-
 let playerScore = 0;
 let computerScore = 0;
 
+// ----------------
+startGame()
+// ----------------
 
 // GAME FUNCTIONS
 
-symbols.forEach((symbol) => symbol.addEventListener("click", startGame))
-
-// sets the initial values and coordinates the other functions
-function startGame(e) {
-    if (playerScore == maxScore - 1 || computerScore == maxScore - 1) {
-        gameOver()
-    } else {
-        playAgainDisplay.style.display = "none"
-        roundChoicesDisplay.textContent = ""
-        roundWinnerDisplay.textContent = ""
-        compareChoices(userSelection(e), computerSelection())
-        playerScoreDisplay.textContent = playerScore
-        computerScoreDisplay.textContent = computerScore
-    }
+// sets the initial values and turns on the click event
+function startGame() {
+    symbols.forEach((symbol) => symbol.addEventListener("click", round))
+    computerScoreDisplay.textContent = computerScore
+    playerScoreDisplay.textContent = playerScore
+    computerChoiceDisplay.textContent = ""
+    playerChoiceDisplay.textContent = ""
+    playAgainDisplay.style.display = "none"
+    roundChoicesDisplay.textContent = ""
+    roundWinnerDisplay.textContent = ""
 }
 
-// let the user select his/her choice
+// manages the single round and calls the other game functions
+function round(e) {
+    roundChoicesDisplay.textContent = ""
+    compareChoices(userSelection(e), computerSelection())
+    playerScoreDisplay.textContent = playerScore
+    computerScoreDisplay.textContent = computerScore
+    if (playerScore == maxScore || computerScore == maxScore) gameOver()
+}
+
+// gets the value of the user selection
 function userSelection(e) {
     playerChoiceDisplay.textContent = e.target.textContent
     roundChoicesDisplay.textContent += `You choose ${e.target.getAttribute("Id")}`
@@ -47,7 +56,7 @@ function userSelection(e) {
     return e.target.getAttribute("data-value")
 }
 
-// random choice 
+// random choice for the computer
 function computerSelection() {
     let computerChoice = symbols[Math.floor(Math.random() * (2 - 0 + 1) + 0)];
     computerChoiceDisplay.textContent = computerChoice.textContent
@@ -61,7 +70,7 @@ function compareChoices(playerScore, computerScore) {
     if (playerScore == computerScore) draw()
     else if (playerScore == 1 && computerScore == 3) playerWins()
     else if (playerScore == 3 && computerScore == 1) computerWins()
-    else if (playerScore > computerScore) playerWins() 
+    else if (playerScore > computerScore) playerWins()
     else computerWins()
 }
 
@@ -81,12 +90,18 @@ function draw() {
 
 // called when the game reach the maximum score allowed
 function gameOver() {
-    roundWinnerDisplay.textContent = playerScore > computerScore ? "Player wins the game!" : "The computer wins the game!"
-    computerChoiceDisplay.textContent = "";
-    playerChoiceDisplay.textContent = "";
+    symbols.forEach((symbol) => symbol.removeEventListener("click", round))
+    if (playerScore > computerScore) {
+        roundWinnerDisplay.textContent = "Player wins the game!"
+        computerChoiceDisplay.textContent = "😔";
+        playerChoiceDisplay.textContent = "🏆";
+    } else {
+        roundWinnerDisplay.textContent = "The computer wins the game!"
+        computerChoiceDisplay.textContent = "🏆";
+        playerChoiceDisplay.textContent = "😔";
+    }
+    playerScore = 0
+    computerScore = 0
     playAgainDisplay.style.display = "block"
+    playAgainBtn.addEventListener("click", startGame)
 }
-
-
-
-startGame()
