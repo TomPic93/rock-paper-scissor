@@ -8,6 +8,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: 'Fuzzy Bubbles', cursive;
 }
 
 html {
@@ -21,19 +22,20 @@ body {
 #title {
     background-color: rgb(32, 37, 56);
     margin: 0px;
-    padding: 20px;
+    padding: 18px;
+    font-size: 20px;
 }
 
 #mainGame {
-    width: 500px;
+    width: 450px;
     margin: auto;
 }
 
 #tabs {
     display: flex;
     justify-content: space-around;
-    max-width: 500px;
-    margin-top: 60px;
+    max-width: 100%;
+    margin-top: 30px;
 }
 
 #playerTab, #computerTab {
@@ -50,15 +52,15 @@ body {
 #roundChoicesDisplay,
 #roundWinnerDisplay,
 #playAgainDisplay {
-    height: 50px;
+    height: 40px;
 }
 
 #roundChoicesDisplay {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 #roundWinnerDisplay {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .score {
@@ -73,17 +75,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     background-color: rgb(32, 37, 56);
     border-radius: 15%;
     margin-top: 30px;
 }
 
 .symbol {
-    height: 100px;
-    width: 100px;
-    font-size: 70px;
+    height: 80px;
+    width: 80px;
+    font-size: 50px;
     padding-top: 10px;
 }
 
@@ -92,13 +94,35 @@ body {
 }
 
 .name, .score {
-    height: 60px;
+    height: 30px;
+    font-size: 30px;
+}
+
+.score {
+    margin-top: 10px;
 }
 
 .choice {
-    height: 160px;
-    font-size: 100px;
-    padding-top: 30px;
+    padding-top: 20px;
+    height: 120px;
+    width: 140px;
+    font-size: 80px;
     background-color: rgb(32, 37, 56);
     border-radius: 15%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.focus {
+    box-shadow: 0px 0px 12px rgb(255, 217, 0);
+}
+
+button {
+    height: 70px;
+    width: 200px;
+    background-color: rgb(32, 37, 56);
+    color: rgb(255, 217, 0);
+    border-radius: 20px;
+    font-size: 20px;
+    margin-top: 12px;
 }
