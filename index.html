@@ -10,25 +10,34 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
     </style>
+    <link rel="icon" href="./media/hand-icon.png">
 </head>
 <body>
-    <div id="title">
-            <h1>Rock Paper Scissor</h1>
+    <header id="title">
+        <h1>Rock Paper Scissor</h1>
+        <div id="info">
+            <p>Copyright © <span id="currentYear"></span> TomPic93</p>
+            <a href="https://github.com/TomPic93" target="_blank"><img id="gitHubImg" src="./media/github-logo.png"
+                alt="github-logo"></a>
         </div>
-
+    </header>
     <div id="mainGame">  
+        <!-- holds the main visual information about the game and the round -->
         <div id="tabs">
             <div class="tab" id="playerTab">
                 <div class="name" id="playerName">Player</div>
                 <div class="score"  id="playerScoreDisplay"></div>
+                <!-- graphical display of the user selection -->
                 <div class="choice" id="playerChoiceDisplay"></div>
             </div>
             <div class="tab" id="computerTab">
                 <div class="name" id="computerName">Computer</div>
                 <div class="score" id="computerScoreDisplay"></div>
+                <!-- graphical display of the user selection -->
                 <div class="choice" id="computerChoiceDisplay"></div>
             </div>
         </div>
+        <!-- elements for the user to select -->
         <div id="symbols">
             <div class="symbolContainer">
                 <div class="symbol" id="rock" data-value="3">👊</div>
@@ -40,12 +49,13 @@
                 <div  class="symbol" id="scissors" data-value="2">✌️</div>
             </div>
         </div>
+        <!-- written display showing the round / final result -->
         <div id="roundChoicesDisplay"></div>
         <div id="roundWinnerDisplay"></div>
+        <!-- reset button, only visible at game-over -->
         <div id="playAgainDisplay">
             <button id="playAgainBtn">Play Again</button>
         </div>
     </div>
-
 </body>
 </html>

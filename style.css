@@ -1,5 +1,5 @@
+/* personal preference: make the whole document not selectable */
 * {
-    /* border: 1px solid black; */
     text-align: center;
     color: aliceblue;
     -webkit-touch-callout: none;
@@ -11,10 +11,6 @@
     font-family: 'Fuzzy Bubbles', cursive;
 }
 
-html {
-    padding: 0px;
-}
-
 body {
     background-color: rgb(37, 43, 66);
 }
@@ -22,8 +18,12 @@ body {
 #title {
     background-color: rgb(32, 37, 56);
     margin: 0px;
-    padding: 18px;
+    padding: 5px;
     font-size: 20px;
+}
+
+h1 {
+    margin-bottom: 12px;
 }
 
 #mainGame {
@@ -38,15 +38,10 @@ body {
     margin-top: 30px;
 }
 
-#playerTab, #computerTab {
+#playerTab,
+#computerTab {
     display: flex;
     flex-direction: column;
-}
-
-#symbols {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 50px;
 }
 
 #roundChoicesDisplay,
@@ -61,6 +56,7 @@ body {
 
 #roundWinnerDisplay {
     font-size: 25px;
+    margin-bottom: auto;
 }
 
 .score {
@@ -69,6 +65,12 @@ body {
 
 .name {
     font-size: 30px;
+}
+
+#symbols {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
 }
 
 .symbolContainer {
@@ -85,15 +87,16 @@ body {
 .symbol {
     height: 80px;
     width: 80px;
-    font-size: 50px;
     padding-top: 10px;
+    font-size: 50px;
 }
 
 .tab {
     width: 200px;
 }
 
-.name, .score {
+.name,
+.score {
     height: 30px;
     font-size: 30px;
 }
@@ -103,26 +106,45 @@ body {
 }
 
 .choice {
-    padding-top: 20px;
     height: 120px;
     width: 140px;
+    padding-top: 20px;
+    margin: auto;
+    margin-top: 20px;
     font-size: 80px;
     background-color: rgb(32, 37, 56);
     border-radius: 15%;
-    margin: auto;
-    margin-top: 20px;
+}
+
+button {
+    height: 70px;
+    width: 200px;
+    margin-top: 12px;
+    background-color: rgb(32, 37, 56);
+    color: rgb(255, 217, 0);
+    border-radius: 20px;
+    font-size: 20px;
 }
 
 .focus {
     box-shadow: 0px 0px 12px rgb(255, 217, 0);
 }
 
-button {
-    height: 70px;
-    width: 200px;
-    background-color: rgb(32, 37, 56);
-    color: rgb(255, 217, 0);
-    border-radius: 20px;
-    font-size: 20px;
-    margin-top: 12px;
+#info {
+    font-size: 12px;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin: auto;
+    margin-bottom: 0px;
+    width: fit-content;
+}
+
+#currentYear {
+    font-size: 12px;
+    text-align: center;
+}
+
+#gitHubImg {
+    height: 18px;
 }
